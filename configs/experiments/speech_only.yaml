@@ -1,0 +1,15 @@
+# Experiment A: Speech Only
+defaults:
+  - ../base_config
+
+modalities:
+  speech: true
+  text: false
+  eeg: false
+  facial: false
+
+fusion:
+  type: "attention"
+
+project:
+  name: "exp_A_speech_only"

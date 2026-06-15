@@ -1,0 +1,15 @@
+# Experiment E: Speech + Text + EEG
+defaults:
+  - ../base_config
+
+modalities:
+  speech: true
+  text: true
+  eeg: true
+  facial: false
+
+fusion:
+  type: "cross_modal"
+
+project:
+  name: "exp_E_speech_text_eeg"

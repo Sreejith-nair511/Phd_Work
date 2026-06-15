@@ -1,0 +1,15 @@
+# Experiment D: Speech + EEG
+defaults:
+  - ../base_config
+
+modalities:
+  speech: true
+  text: false
+  eeg: true
+  facial: false
+
+fusion:
+  type: "attention"
+
+project:
+  name: "exp_D_speech_eeg"

@@ -1,0 +1,119 @@
+# Base Configuration for Multimodal Depression Detection Framework
+# ================================================================
+# This is the master config. Override per-experiment in configs/experiments/
+
+project:
+  name: "multimodal_depression_detection"
+  seed: 42
+  device: "cuda"  # cuda | cpu
+  num_workers: 4
+  mixed_precision: true
+  log_dir: "runs/"
+  checkpoint_dir: "models/checkpoints/"
+
+# ─── Modality Flags ───────────────────────────────────────────────
+modalities:
+  speech: true
+  text: true
+  eeg: false
+  facial: false
+
+# ─── Encoder Configs ──────────────────────────────────────────────
+encoders:
+  embedding_dim: 256  # All encoders MUST output this dimension
+
+  speech:
+    feature_type: "wav2vec2"  # mfcc | wav2vec2
+    wav2vec2_model: "facebook/wav2vec2-base-960h"
+    mfcc_n_mfcc: 40
+    mfcc_sample_rate: 16000
+    mfcc_n_fft: 512
+    mfcc_hop_length: 160
+    extract_prosodic: true   # speech rate, pause, energy, pitch, latency
+    hidden_dim: 512
+    num_layers: 2
+    dropout: 0.3
+    output_dim: 256
+
+  text:
+    model_name: "roberta-base"  # roberta-base | bert-base-uncased
+    max_length: 512
+    pooling: "cls"             # cls | mean | max
+    fine_tune: false
+    hidden_dim: 512
+    dropout: 0.3
+    output_dim: 256
+
+  eeg:
+    encoder_type: "transformer"  # cnn | transformer | bilstm
+    input_channels: 64
+    sequence_length: 1000
+    hidden_dim: 512
+    num_heads: 8
+    num_layers: 4
+    dropout: 0.3
+    output_dim: 256
+
+  facial:
+    encoder_type: "cnn"          # cnn | vit
+    use_landmarks: true
+    use_image_sequence: true
+    num_frames: 30
+    image_size: 224
+    hidden_dim: 512
+    vit_patch_size: 16
+    dropout: 0.3
+    output_dim: 256
+
+# ─── Fusion Config ────────────────────────────────────────────────
+fusion:
+  type: "attention"  # early | late | attention | cross_modal
+  embedding_dim: 256
+  num_heads: 8
+  dropout: 0.3
+  hidden_dim: 512
+
+# ─── Classifier ───────────────────────────────────────────────────
+classifier:
+  hidden_dims: [512, 256, 128]
+  num_classes: 2
+  dropout: 0.4
+  task: "binary"  # binary | regression (PHQ-8 score)
+
+# ─── Training ─────────────────────────────────────────────────────
+training:
+  epochs: 50
+  batch_size: 16
+  learning_rate: 1.0e-4
+  weight_decay: 1.0e-5
+  scheduler: "cosine"       # cosine | step | plateau
+  warmup_epochs: 5
+  gradient_clip: 1.0
+  early_stopping_patience: 10
+  class_weights: true        # handle class imbalance
+  label_smoothing: 0.1
+
+# ─── Dataset ──────────────────────────────────────────────────────
+dataset:
+  name: "daic_woz"          # daic_woz | modma | pdch
+  root: "dataset/"
+  split_ratios: [0.7, 0.15, 0.15]  # train / val / test
+  augmentation: true
+  cache_features: true
+  phq8_threshold: 10         # PHQ-8 >= 10 → depressed
+
+# ─── Evaluation ───────────────────────────────────────────────────
+evaluation:
+  metrics: ["accuracy", "precision", "recall", "f1", "roc_auc"]
+  save_confusion_matrix: true
+  save_classification_report: true
+  save_roc_curve: true
+  threshold: 0.5
+
+# ─── Visualization ────────────────────────────────────────────────
+visualization:
+  tsne: true
+  attention_maps: true
+  feature_importance: true
+  training_curves: true
+  save_dir: "visualization/outputs/"

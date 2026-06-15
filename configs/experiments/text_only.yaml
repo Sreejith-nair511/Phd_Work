@@ -1,0 +1,15 @@
+# Experiment B: Text Only
+defaults:
+  - ../base_config
+
+modalities:
+  speech: false
+  text: true
+  eeg: false
+  facial: false
+
+fusion:
+  type: "attention"
+
+project:
+  name: "exp_B_text_only"

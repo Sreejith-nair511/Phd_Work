@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+*.so
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Model checkpoints and large files
+models/checkpoints/*.pt
+models/checkpoints/*.pth
+models/pretrained/
+
+# Dataset raw files
+dataset/raw/
+dataset/daic_woz/*.wav
+dataset/daic_woz/*.csv
+dataset/modma/eeg/
+dataset/modma/audio/
+dataset/pdch/
+dataset/processed/
+
+# Logs and outputs
+runs/
+visualization/outputs/
+*.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db

@@ -1,0 +1,15 @@
+# Experiment C: Speech + Text
+defaults:
+  - ../base_config
+
+modalities:
+  speech: true
+  text: true
+  eeg: false
+  facial: false
+
+fusion:
+  type: "attention"
+
+project:
+  name: "exp_C_speech_text"

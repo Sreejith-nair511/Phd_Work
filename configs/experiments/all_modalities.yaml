@@ -1,0 +1,15 @@
+# Experiment F: Speech + Text + EEG + Facial (Full Model)
+defaults:
+  - ../base_config
+
+modalities:
+  speech: true
+  text: true
+  eeg: true
+  facial: true
+
+fusion:
+  type: "cross_modal"
+
+project:
+  name: "exp_F_all_modalities"
