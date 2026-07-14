@@ -1,0 +1,20 @@
+\begin{table}[h]
+\centering
+\caption{PHQ-8 Severity Prediction: Regression Metrics}
+\label{tab:regression_metrics}
+\begin{tabular}{lccl}
+\hline
+\textbf{Metric} & \textbf{Value} & \textbf{Interpretation} & \textbf{Reference} \\
+\hline
+MAE & 2.5373 & Lower is better & ~3.5-4.5 (literature) \\
+RMSE & 3.3478 & Lower is better & ~5.0-6.5 (literature) \\
+Pearson r & 0.8581 & Higher is better & > 0.5 good \\
+CCC & 0.8575 & Higher is better & > 0.3 acceptable \\
+R2 Score & 0.7044 & Higher is better & > 0.2 for PHQ-8 \\
+\hline
+\end{tabular}
+\begin{tablenotes}
+\small
+\item Dataset: DAIC-WOZ, Test set: 56 participants, Aggregation: Mean over utterances
+\end{tablenotes}
+\end{table}

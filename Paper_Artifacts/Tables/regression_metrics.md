@@ -1,0 +1,13 @@
+# Regression Metrics: PHQ-8 Severity Prediction
+
+Dataset: DAIC-WOZ | Test Participants: 56 | Aggregation: Mean over utterances
+
+| Metric | Value | Description | Interpretation | Baseline Reference |
+|---|---|---|---|---|
+| MAE | 2.5373 | Mean Absolute Error | Lower is better | ~3.5-4.5 (literature) |
+| RMSE | 3.3478 | Root Mean Squared Error | Lower is better | ~5.0-6.5 (literature) |
+| Pearson r | 0.8581 | Pearson Correlation Coefficient | Higher is better | > 0.5 good |
+| CCC | 0.8575 | Concordance Correlation Coeff | Higher is better | > 0.3 acceptable |
+| R2 Score | 0.7044 | Coefficient of Determination | Higher is better | > 0.2 for PHQ-8 |
+
+**Model:** Speech+Text Multimodal with Attention Fusion
