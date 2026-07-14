@@ -1,0 +1,41 @@
+Component,Module,Class/Function,File,Lines,Status,Depression_Relevance,Implementation_Level
+Audio Loading,Speech Preprocessing,load_audio,dataset/preprocessing.py,22-48,Implemented,Captures raw speech signals,Full
+MFCC Extraction,Speech Preprocessing,extract_mfcc,dataset/preprocessing.py,51-85,Implemented,Spectral envelope in depression dysphonia,Full
+MFCC Normalization,Speech Preprocessing,(in extract_mfcc),dataset/preprocessing.py,71-74,Implemented,Speaker-independent patterns,Full
+VAD Implementation,Speech Preprocessing,(in extract_prosodic_features),dataset/preprocessing.py,115-120,Implemented,Detects speech vs silence,Full
+Speech Rate,Speech Preprocessing,(in extract_prosodic_features),dataset/preprocessing.py,130-131,Implemented,Reduced rate in depression,Full
+Pause Duration,Speech Preprocessing,(in extract_prosodic_features),dataset/preprocessing.py,134-138,Implemented,Increased pauses in depression,Full
+Response Latency,Speech Preprocessing,(in extract_prosodic_features),dataset/preprocessing.py,141-146,Implemented,Delayed response onset,Full
+Energy Feature,Speech Preprocessing,(in extract_prosodic_features),dataset/preprocessing.py,149-151,Implemented,Reduced loudness in depression,Full
+Pitch Feature,Speech Preprocessing,(in extract_prosodic_features),dataset/preprocessing.py,154-158,Implemented,Monotone quality in depression,Full
+MFCC Encoder,Speech Encoding,MFCCEncoder,encoders/speech_encoder.py,39-78,Implemented,BiLSTM for temporal patterns,Full
+Wav2Vec2 Encoder,Speech Encoding,Wav2Vec2Encoder,encoders/speech_encoder.py,81-154,Implemented,Pre-trained acoustic model,Full
+Prosodic Encoder,Speech Encoding,ProsodicFeatureExtractor,encoders/speech_encoder.py,18-52,Implemented,Combines 5 prosodic features,Full
+Speech Encoder Integration,Speech Encoding,SpeechEncoder,encoders/speech_encoder.py,157-235,Implemented,Fuses acoustic + prosodic,Full
+Text Encoder,Text Encoding,TextEncoder,encoders/text_encoder.py,1-100,Implemented,RoBERTa/BERT embeddings,Full
+EEG Encoder,EEG Encoding,EEGEncoder,encoders/eeg_encoder.py,1-200,Implemented,CNN/Transformer/BiLSTM,Full
+Facial Encoder,Facial Encoding,FacialEncoder,encoders/facial_encoder.py,1-250,Implemented,CNN/ViT for images,Full
+Attention Fusion,Multimodal Fusion,AttentionFusion,fusion/attention_fusion.py,1-108,Implemented,Transformer-style attention,Full
+Early Fusion,Multimodal Fusion,EarlyFusion,fusion/early_fusion.py,1-90,Implemented,Concatenation + MLP,Full
+Late Fusion,Multimodal Fusion,LateFusion,fusion/late_fusion.py,1-85,Implemented,Per-modality heads,Full
+Cross-Modal Fusion,Multimodal Fusion,CrossModalFusion,fusion/cross_modal_fusion.py,1-120,Implemented,Pairwise attention,Full
+Binary Classifier,Classification,DepressionClassifier,models/classifier.py,20-57,Implemented,2-class output,Full
+Regression Classifier,Regression,DepressionClassifier,models/classifier.py,20-57,Partial,1-class output available,Scaffold
+MSE Loss,Regression Loss,get_loss_fn,training/losses.py,82,Implemented,Basic regression loss,Minimal
+Cross-Entropy Loss,Classification Loss,LabelSmoothingCrossEntropy,training/losses.py,29-48,Implemented,With label smoothing,Full
+Focal Loss,Classification Loss,FocalLoss,training/losses.py,54-70,Implemented,For class imbalance,Full
+Trainer,Training,Trainer,training/trainer.py,1-300,Implemented,For binary classification,Full
+Trainer Regression,Training,Trainer,training/trainer.py,1-300,Not Implemented,Cannot handle continuous targets,None
+Evaluator,Evaluation,Evaluator,evaluation/evaluator.py,1-150,Implemented,Classification metrics only,Full
+Classification Metrics,Evaluation,compute_metrics,evaluation/metrics.py,20-56,Implemented,Accuracy Precision Recall F1 ROC AUC,Full
+Regression Metrics,Evaluation,compute_metrics,evaluation/metrics.py,20-56,Not Implemented,No MAE RMSE Pearson CCC R²,None
+Confusion Matrix,Visualization,plot_confusion_matrix,visualization/confusion_matrix.py,1-50,Implemented,Classification,Full
+ROC Curve,Visualization,plot_roc_curve,visualization/roc_curve.py,1-60,Implemented,Classification,Full
+Training Curves,Visualization,plot_training_curves,visualization/training_curves.py,1-50,Implemented,Classification only,Full
+t-SNE Visualization,Visualization,plot_tsne,visualization/tsne_plot.py,1-70,Implemented,Embedding visualization,Full
+Utterance Segmentation,Advanced Speech,N/A,N/A,N/A,Not Implemented,Critical for advanced analysis,None
+Per-Utterance Encoding,Advanced Speech,N/A,N/A,N/A,Not Implemented,Utterance-level depression analysis,None
+Utterance Aggregation,Advanced Speech,N/A,N/A,N/A,Not Implemented,Participant-level from utterances,None
+PHQ-8 Regression,Regression PHQ-8,N/A,N/A,N/A,Partial,Binary threshold only,Scaffold
+Utterance PHQ-8,Regression PHQ-8,N/A,N/A,N/A,Not Implemented,Per-utterance severity,None
+Aggregation to Participant,Regression PHQ-8,N/A,N/A,N/A,Not Implemented,Participant-level severity,None
