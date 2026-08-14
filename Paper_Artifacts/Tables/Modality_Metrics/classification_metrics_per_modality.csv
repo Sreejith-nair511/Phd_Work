@@ -1,0 +1,4 @@
+Modality,Accuracy(%),Precision,Recall,F1-Score,Specificity,TP,TN,FP,FN
+Audio Only,96.7,0.9500,0.9500,0.9500,0.9750,19,39,1,1
+Text Only,95.0,0.9474,0.9000,0.9231,0.9750,18,39,1,2
+Fused (Audio+Text),98.3,1.0000,0.9500,0.9744,1.0000,19,40,0,1
